@@ -4,11 +4,28 @@
     mode="horizontal"
     :router="true">
     <el-menu-item index="/">首页</el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">我的工作台</template>
-      <el-menu-item index="2-1">选项1</el-menu-item>
-      <el-menu-item index="2-2">选项2</el-menu-item>
-      <el-menu-item index="2-3">选项3</el-menu-item>
+    <el-submenu v-for="(group, groupIndex) in menuGroup" :key="`group${groupIndex}`" :index="`group${groupIndex}`">
+      <template slot="title">{{group.title}}</template>
+      <el-menu-item v-for="item in group.pages" :key="item.routerPath" :index="item.routerPath">{{item.title}}</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
+
+<script>
+import { menu } from '@/router'
+export default {
+  data () {
+    return {
+      menu
+    }
+  },
+  computed: {
+    menuGroup () {
+      return Array.from(new Set(this.menu.map(e => e.className))).map(name => ({
+        title: name,
+        pages: this.menu.filter(m => m.className === name)
+      }))
+    }
+  }
+}
+</script>
