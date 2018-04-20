@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>回调函数</h1>
+    <h1>回调地狱</h1>
     <p>在源码中查看“回调地狱”效果</p>
     <el-button @click="start">每隔1秒 依次打开下面的开关</el-button>
     <p v-for="(v, i) in values" :key="i">

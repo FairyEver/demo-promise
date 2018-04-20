@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>旧的回调模式</h1>
+    <h1>使用Promise改造前面的例子</h1>
     <el-button @click="start">打开第一开关 2s后打开第二个开关</el-button>
     <p><el-switch v-model="value1"></el-switch></p>
     <p><el-switch v-model="value2"></el-switch></p>
@@ -9,8 +9,8 @@
 
 <script>
 export default {
-  groupName: '引入',
-  title: '旧的回调模式',
+  groupName: '认识Promise',
+  title: '使用Promise改造前面的例子',
   data () {
     return {
       value1: false,
@@ -19,15 +19,14 @@ export default {
   },
   methods: {
     start () {
-      this.open1({
-        callback: () => {
-          this.open2()
-        }
-      })
+      this.open1()
+        .then(this.open2)
     },
-    open1 ({callback = () => {}}) {
-      this.value1 = true
-      setTimeout(callback, 2000)
+    open1 () {
+      return new Promise((resolve, reject) => {
+        this.value1 = true
+        setTimeout(resolve, 2000)
+      })
     },
     open2 () {
       this.value2 = true
