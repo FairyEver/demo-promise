@@ -26,6 +26,7 @@ export default {
   .x-main {
     width: 100%;
     flex-grow: 1;
+    padding: 50px;
   }
 }
 </style>

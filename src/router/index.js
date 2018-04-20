@@ -29,6 +29,6 @@ export const router = new Router({
 })
 
 export const menu = demos.map(demo => {
-  const { routerPath, title, className } = demo
-  return { routerPath, title, className }
+  const { routerPath, title, groupName } = demo
+  return { routerPath, title, groupName }
 })

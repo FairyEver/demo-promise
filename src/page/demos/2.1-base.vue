@@ -1,12 +1,12 @@
 <template>
   <div>
-    2
+    1
   </div>
 </template>
 
 <script>
 export default {
-  className: '基础入门',
-  title: 'Promise 基础 2'
+  groupName: '基础入门',
+  title: 'Promise 基础'
 }
 </script>

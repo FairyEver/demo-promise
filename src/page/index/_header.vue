@@ -21,9 +21,9 @@ export default {
   },
   computed: {
     menuGroup () {
-      return Array.from(new Set(this.menu.map(e => e.className))).map(name => ({
+      return Array.from(new Set(this.menu.map(e => e.groupName))).map(name => ({
         title: name,
-        pages: this.menu.filter(m => m.className === name)
+        pages: this.menu.filter(m => m.groupName === name)
       }))
     }
   }
