@@ -4,8 +4,24 @@ import path from 'path'
 
 Vue.use(Router)
 
+// const req = require.context('@/page/demos', false, /\.vue$/)
+// const demos = req.keys().map(req).map(e => {
+//   const def = e.default
+//   const name = path.basename(def.__file, '.vue')
+//   def.routerPath = name
+//   def.routerName = name
+//   return def
+// })
+
 const req = require.context('@/page/demos', false, /\.vue$/)
-const demos = req.keys().map(req).map(e => {
+console.log(req) // 能被 require 请求到的文件的上下文
+const keys = req.keys() // 每个文件的路径
+console.log(keys)
+const allFile = keys.map(key => {
+  return req(key)
+}) // 相当于依次require了每个文件后组成一个数组
+console.log(allFile)
+const demos = allFile.map(e => {
   const def = e.default
   const name = path.basename(def.__file, '.vue')
   def.routerPath = name
